@@ -1,0 +1,7 @@
+--- 
+- name: sync
+  command: "sync"    
+  
+- name: eject {{sd_device_base}}
+  become: true
+  command: "eject {{sd_device_base}}"   

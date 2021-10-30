@@ -1,0 +1,6 @@
+- name: Ansible create file with content example
+  become: true
+  copy:
+    dest: "{{ local_mount_root }}/etc/hostname"
+    content: |
+      {{ os_hostname }}

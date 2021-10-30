@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  connection: local
+  become: yes
+  become_method: sudo
+  vars_files:
+    - defaults/main.yml
+    - vars/main.yml
+  tasks:
+    - include_role:
+        name: flashing

@@ -1,0 +1,18 @@
+images:
+  raspberrypi:
+    devices:
+      boot:
+        dev: "{{ sd_device_base }}1"
+        fstype: vfat
+      root:
+        dev: "{{ sd_device_base }}2"
+        fstype: ext4
+  imx6:
+    dd_bs: 4k
+    devices:
+      root:
+        dev: "{{ sd_device_base }}1"
+        fstype: ext4
+
+local_mount_root: /tmp/sdcard/dev1
+local_mount_boot: /tmp/sdcard/dev2

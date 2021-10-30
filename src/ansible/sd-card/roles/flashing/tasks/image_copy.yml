@@ -1,0 +1,11 @@
+- name: "linked image is presented"
+  stat:
+    path: "{{ sd_card_image }}"
+  register: prepare_sd_card_image
+
+- name: copy image to card for {{sd_device_base}}
+  command: "dd if={{ sd_card_image }} of={{sd_device_base}} bs={{ images[os_prepared].dd_bs | default('1M')}} conv=fsync"
+  become: true
+
+- name: sync
+  command: "sync"

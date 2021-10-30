@@ -1,0 +1,6 @@
+- include_tasks: devices_umount.yml
+- include_tasks: image_copy.yml
+- include_tasks: devices_mount.yml
+- include_tasks: os_base_hostname.yml
+- include_tasks: devices_umount.yml
+- include_tasks: devices_eject.yml

@@ -1,0 +1,6 @@
+sd_image_workfolder: "{{ ansible_env.HOME }}/ansible_work2"
+sd_device_id: "sda"
+sd_device_base: "/dev/{{sd_device_id}}"
+
+os_prepared: raspberrypi
+os_hostname: festivalbox

@@ -1,0 +1,28 @@
+---
+- file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+  with_items:
+    - "{{ local_mount_root }}"
+    - "{{ local_mount_boot }}"
+
+- name: Mont a mounted volume boot
+  become: true
+  mount:
+    src: "{{ images[os_prepared].devices.boot.dev }}"
+    path: "{{ local_mount_boot }}"
+    fstype: "{{ images[os_prepared].devices.boot.fstype}}"
+    #opts: auto
+    state: mounted
+  when: images[os_prepared].devices.boot is defined
+
+- name: Mont a mounted volume root
+  become: true
+  mount:
+    src: "{{ images[os_prepared].devices.root.dev }}"
+    path: "{{ local_mount_root }}"
+    fstype: "{{ images[os_prepared].devices.root.fstype}}"
+    #opts: auto
+    state: mounted
+  when: images[os_prepared].devices.root is defined

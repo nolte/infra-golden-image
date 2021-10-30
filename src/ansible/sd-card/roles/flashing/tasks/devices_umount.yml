@@ -1,0 +1,13 @@
+---
+- name: Unmount a mounted volume
+  become: true
+  mount:
+    path: "{{ local_mount_root }}"
+    state: unmounted
+  when: images[os_prepared].devices.root is defined
+- name: Unmount a mounted volume
+  become: true
+  mount:
+    path: "{{ local_mount_boot }}"
+    state: unmounted
+  when: images[os_prepared].devices.boot is defined
