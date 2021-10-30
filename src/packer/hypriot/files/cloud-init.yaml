@@ -1,0 +1,52 @@
+#cloud-config
+
+# Set your hostname here, the manage_etc_hosts will update the hosts file entries as well
+hostname: {{ user `hostname`}}
+manage_etc_hosts: true
+
+# You could modify this for your own user information
+users:
+  - name: {{ user `user_name`}}
+    gecos: "Hypriot Pirate"
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    groups: users,docker,video
+    plain_text_passwd: {{ user `user_plain_text_passwd`}}
+    lock_passwd: false
+    ssh_pwauth: {{ user `ssh_pwauth`}}
+    chpasswd: { expire: false }
+    ssh_authorized_keys:
+      - {{ user `local_ssh_public_key`}}
+
+package_upgrade: false
+
+# # WiFi connect to HotSpot
+# # - use `wpa_passphrase SSID PASSWORD` to encrypt the psk
+write_files:
+  - content: |
+      allow-hotplug wlan0
+      iface wlan0 inet dhcp
+      wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+      iface default inet dhcp
+    path: /etc/network/interfaces.d/wlan0
+  - content: |
+      country={{ lower(user `wpa_supplicant_country`)}}
+      ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+      update_config=1
+      network={
+      ssid="{{ user `wifi_ssid`}}"
+      psk="{{ user `wifi_psk`}}"
+      proto=RSN
+      key_mgmt=WPA-PSK
+      pairwise=CCMP
+      auth_alg=OPEN
+      }
+    path: /etc/wpa_supplicant/wpa_supplicant.conf
+
+# These commands will be ran once on first boot only
+runcmd:
+  # Pickup the hostname changes
+  - 'systemctl restart avahi-daemon'
+
+  # Activate WiFi interface
+  - 'ifup wlan0'
