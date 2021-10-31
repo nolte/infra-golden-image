@@ -1,6 +1,16 @@
 images:
-  raspberrypi:
-    devices:
+  hypriot:
+    devices:    
+      boot:
+        dev: "{{ sd_device_base }}1"
+        fstype: vfat
+      root:
+        dev: "{{ sd_device_base }}2"
+        fstype: ext4
+  raspbian:
+    dd_bs: 4M
+    conv: sync # fsync
+    devices:    
       boot:
         dev: "{{ sd_device_base }}1"
         fstype: vfat

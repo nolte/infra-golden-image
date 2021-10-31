@@ -1,5 +1,6 @@
 ---
-- file:
+- name: prepare local mount directories
+  file:
     path: "{{ item }}"
     state: directory
     mode: 0755
@@ -13,7 +14,7 @@
     src: "{{ images[os_prepared].devices.boot.dev }}"
     path: "{{ local_mount_boot }}"
     fstype: "{{ images[os_prepared].devices.boot.fstype}}"
-    #opts: auto
+    # opts: auto
     state: mounted
   when: images[os_prepared].devices.boot is defined
 

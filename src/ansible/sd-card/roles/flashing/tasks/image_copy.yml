@@ -4,7 +4,7 @@
   register: prepare_sd_card_image
 
 - name: copy image to card for {{sd_device_base}}
-  command: "dd if={{ sd_card_image }} of={{sd_device_base}} bs={{ images[os_prepared].dd_bs | default('1M')}} conv=fsync"
+  command: "dd if={{ sd_card_image }} of={{sd_device_base}} bs={{ images[os_prepared].dd_bs | default('1M')}} conv={{ images[os_prepared].conv | default('fsync')}}"
   become: true
 
 - name: sync

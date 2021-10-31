@@ -88,7 +88,18 @@ docker run \
    -v $(pwd):/workspace \
    -v ${PWD}/../../packer/output-image:/tmp/img:ro \
    --rm ansible/ansible-runner \
-   ansible-playbook main.yml --extra-vars "os_hostname=flasher sd_card_image=/tmp/img/custom-hypriotos.img"
+   ansible-playbook main.yml --extra-vars "os_hostname=flasher os_prepared=hypriot sd_card_image=/tmp/img/custom-hypriotos.img"
+
+# or the raspbian image
+
+docker run \
+   --device=/dev/sda \
+   --privileged \
+   -w /workspace \
+   -v $(pwd):/workspace \
+   -v ${PWD}/../../packer/output-image:/tmp/img:ro \
+   --rm ansible/ansible-runner \
+   ansible-playbook main.yml --extra-vars "os_hostname=flasher os_prepared=raspbian sd_card_image=/tmp/img/custom-raspbian.img"
 
 ```
 

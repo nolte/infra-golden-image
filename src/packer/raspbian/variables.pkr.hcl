@@ -21,6 +21,7 @@ variable "wpa_supplicant_country" {
 variable "ssh_public_key" {
   type = string
 }
+
 variable "system_user" {
   type    = string
   default = "pirate"
