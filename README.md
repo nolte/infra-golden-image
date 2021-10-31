@@ -11,7 +11,7 @@ For the `arm` image creation we use the [solo-io/packer-plugin-arm-image](https:
 Different Distributions like:
 
 * [hypriot](https://blog.hypriot.com/)
-* [raspbian](https://www.raspbian.org/) *(planed)*
+* [raspbian](https://www.raspbian.org/)
 * [ubuntu](https://ubuntu.com/download/raspberry-pi) *(planed)*
 
 Base Config Settings
@@ -53,6 +53,26 @@ docker run \
     -var wifi_psk=$(pass private/wlan/home/psk) \
     .
 ```
+
+or some raspbian based image
+
+```sh
+docker run \
+  --rm \
+  --privileged \
+  -w /build/raspbian \
+  -v /dev:/dev \
+  -v ${PWD}:/build:ro \
+  -v ${PWD}/packer_cache:/build/packer_cache \
+  -v ${PWD}/output-image:/build/output-image \
+  -e PACKER_CACHE_DIR=/build/packer_cache \
+  ghcr.io/solo-io/packer-plugin-arm-image build \
+    -var ssh_public_key="$(pass private/keyfiles/ssh/private_ed25519/id_ed25519.pub)" \
+    -var wifi_ssid=$(pass private/wlan/home/ssid) \
+    -var wifi_psk=$(pass private/wlan/home/psk) \
+    .
+```
+
 
 2. Copy the Image to somme sd Card, with [ansible](https://www.ansible.com/).
 
