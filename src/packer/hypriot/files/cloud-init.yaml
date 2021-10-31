@@ -1,22 +1,22 @@
 #cloud-config
 
 # Set your hostname here, the manage_etc_hosts will update the hosts file entries as well
-hostname: {{ user `hostname`}}
+hostname: ${ hostname }
 manage_etc_hosts: true
 
 # You could modify this for your own user information
 users:
-  - name: {{ user `user_name`}}
+  - name: ${ username }
     gecos: "Hypriot Pirate"
     sudo: ALL=(ALL) NOPASSWD:ALL
     shell: /bin/bash
     groups: users,docker,video
-    plain_text_passwd: {{ user `user_plain_text_passwd`}}
+    plain_text_passwd: ${ user_user_plain_text_passwd }
     lock_passwd: false
-    ssh_pwauth: {{ user `ssh_pwauth`}}
+    ssh_pwauth: ${ ssh_pwauth }
     chpasswd: { expire: false }
     ssh_authorized_keys:
-      - {{ user `local_ssh_public_key`}}
+      - ${ ssh_authorized_key }
 
 package_upgrade: false
 
@@ -30,12 +30,12 @@ write_files:
       iface default inet dhcp
     path: /etc/network/interfaces.d/wlan0
   - content: |
-      country={{ lower(user `wpa_supplicant_country`)}}
+      country=${ wpa_supplicant_country }
       ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
       update_config=1
       network={
-      ssid="{{ user `wifi_ssid`}}"
-      psk="{{ user `wifi_psk`}}"
+      ssid="${ wifi_ssid }"
+      psk="${ wifi_psk }"
       proto=RSN
       key_mgmt=WPA-PSK
       pairwise=CCMP

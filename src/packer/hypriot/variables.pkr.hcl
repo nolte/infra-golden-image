@@ -1,9 +1,3 @@
-
-variable "image_home_dir" {
-  type    = string
-  default = "/home/pi"
-}
-
 variable "wifi_ssid" {
   type = string
 }
@@ -21,11 +15,6 @@ variable "wpa_supplicant_country" {
 variable "local_ssh_public_key" {
   type = string
 }
-
-locals {
-  ssh_key = "${pathexpand(var.local_ssh_public_key)}"
-}
-
 
 variable "hostname" {
   type    = string
