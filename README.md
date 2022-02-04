@@ -1,8 +1,8 @@
-# Personalized Images 
+# Personalized Images
 
-This Repo will be help creating you own baseline. At the Moment the Focus will be, build Images for your Home Lab Cluster. 
+This Repo will be help creating you own baseline. At the Moment the Focus will be, build Images for your Home Lab Cluster.
 
-This Process will be make it Possible work with a set of different Distributions. You have the most Important Configurations for starting your device like Network Configurations (WLAN) or handle the Technical User for maintenance. 
+This Process will be make it Possible work with a set of different Distributions. You have the most Important Configurations for starting your device like Network Configurations (WLAN) or handle the Technical User for maintenance.
 
 For the `arm` image creation we use the [solo-io/packer-plugin-arm-image](https://github.com/solo-io/packer-plugin-arm-image) Packer Plugin.
 
@@ -23,8 +23,10 @@ Base Config Settings
 
 ## Tested Devices
 
-* [raspberry-pi-4](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/)
-
+| Device                                                                         | Arch  | hypriot            | raspbian (buster)  | raspbian (bullseye) |
+|--------------------------------------------------------------------------------|-------|--------------------|--------------------|---------------------|
+| [raspberry-pi-4](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/) | armhf | :heavy_check_mark: | :heavy_check_mark: | :question:          |
+| [Cubox-I 4x4](https://www.solid-run.com/news/mini-computer-cubox-i-4x4/)       | armhf | :question:         | :question:         | :question:          |
 
 ## How to Use
 
@@ -35,7 +37,7 @@ This Repo holds sources for crating Images used [Packer](https://www.packer.io/)
 ```sh
 cd src/packer
 
-# create a hypriot based image 
+# create a hypriot based image
 # The container will be create a img, prepared for flash to your SD Card
 
 docker run \

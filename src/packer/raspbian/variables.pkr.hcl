@@ -26,4 +26,3 @@ variable "system_user" {
   type    = string
   default = "pirate"
 }
-

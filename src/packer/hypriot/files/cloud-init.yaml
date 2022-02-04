@@ -14,6 +14,7 @@ users:
     plain_text_passwd: ${ user_user_plain_text_passwd }
     lock_passwd: false
     ssh_pwauth: ${ ssh_pwauth }
+    # yamllint disable-line rule:braces
     chpasswd: { expire: false }
     ssh_authorized_keys:
       - ${ ssh_authorized_key }

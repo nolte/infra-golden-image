@@ -1,6 +1,6 @@
 images:
   hypriot:
-    devices:    
+    devices:
       boot:
         dev: "{{ sd_device_base }}1"
         fstype: vfat
@@ -10,7 +10,7 @@ images:
   raspbian:
     dd_bs: 4M
     conv: sync # fsync
-    devices:    
+    devices:
       boot:
         dev: "{{ sd_device_base }}1"
         fstype: vfat

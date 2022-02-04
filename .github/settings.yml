@@ -1,0 +1,10 @@
+---
+# These settings are synced to GitHub by https://probot.github.io/apps/settings/
+
+_extends: gh-plumbing:.github/commons-settings.yml
+
+repository:
+  name: infra-golden-image
+  description: Creates a Base Image for different armhf Devices, like Raspberry-pi.
+  homepage: ""
+  topics: sdcard, image, golden image

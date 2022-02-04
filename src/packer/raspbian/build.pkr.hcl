@@ -2,6 +2,7 @@
 build {
   sources = [
     "source.arm-image.raspbian",
+    "source.arm-image.raspbian-bullseye",
   ]
 
   provisioner "shell" {
